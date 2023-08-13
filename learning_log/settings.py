@@ -83,8 +83,14 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresq1',
+        'URL' : 'postgresql://postgres:3Iy6af7f7YTJfcpr8PLP@containers-us-west-115.railway.app:5618/railway',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME' : 'railway',
+        'USER' : 'postgres',
+        'PASSWORD' : '3Iy6af7f7YTJfcpr8PLP',
+        'HOST' : 'containers-us-west-115.railway.app',
+        'PORT' : 5618,
     }
 }
 
@@ -139,23 +145,23 @@ BOOTSTRAP3 = {
     'include_jquery': True,
 }
 
-# Heroku settings
+# # Heroku settings
 
-if os.getcwd() == '/app':
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.config(default='postgres://localhost')
-    }
+# if os.getcwd() == '/app':
+#     import dj_database_url
+#     DATABASES = {
+#         'default': dj_database_url.config(default='postgres://localhost')
+#     }
 
-    # Honor the 'X-Forwarded-Proto' header for request.is_secure().
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # Allow all host headers.
-    ALLOWED_HOSTS = ['*']
+#     # Allow all host headers.
+#     ALLOWED_HOSTS = ['*']
 
-    # Static asset configuration
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
+#     # Static asset configuration
+#     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+#     STATIC_ROOT = 'staticfiles'
+#     STATICFILES_DIRS = (
+#         os.path.join(BASE_DIR, 'static'),
+    # )
